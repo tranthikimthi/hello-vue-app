@@ -1,14 +1,21 @@
 <template>
-  <div class="d-flex align-items-center" :class="completed ? 'completed' : ''">
-    <div class="flex-shrink-0 mr-2">
-      <input
-        type="checkbox"
-        :checked="completed"
-        @change="toggleCompletion()"
-      />
+  <div class="d-flex">
+    <div class="col-md-11 d-flex align-items-center">
+      <div class="flex-shrink-0 mr-2">
+        <input
+          type="checkbox"
+          :checked="completed"
+          @change="toggleCompletion()"
+        />
+      </div>
+      <div class="ml-6 my-1" :class="completed ? 'completed' : ''">
+        {{ title }}
+      </div>
     </div>
-    <div class="ml-6 my-1">
-      {{ title }}
+    <div class="col-md-1">
+      <button @click="deleteItem(id)" class="btn btn-sm btn-outline-danger">
+        Delete
+      </button>
     </div>
   </div>
 </template>
@@ -31,7 +38,10 @@ export default defineComponent({
         completed: !props.completed,
       });
     };
-    return { toggleCompletion };
+    const deleteItem = (id: number) => {
+      store.commit(MutationType.DeleteItem, id);
+    };
+    return { toggleCompletion, deleteItem };
   },
 });
 </script>

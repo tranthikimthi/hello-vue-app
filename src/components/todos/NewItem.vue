@@ -2,12 +2,16 @@
   <form class="form-row my-2" @submit.prevent="createTask">
     <div class="d-flex col-md-12">
       <input
-        class="form-control"
+        class="form-control col-md-11"
         v-model="title"
         type="text"
         placeholder="What task do you need to complete?"
       />
-      <button type="submit" class="btn btn-outline-primary">Add</button>
+      <div class="col-md-1">
+        <button type="submit" class="btn btn-outline-primary">
+          Add
+        </button>
+      </div>
     </div>
   </form>
 </template>
@@ -15,7 +19,6 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import store from "@/store";
-import { TodoItem } from "@/store/state";
 import { MutationType } from "@/store/mutations";
 
 export default defineComponent({
@@ -23,8 +26,7 @@ export default defineComponent({
     const title = ref("");
     const createTask = () => {
       if (!title.value) return;
-      const item: TodoItem = {
-        id: Date.now(),
+      const item = {
         title: title.value,
         completed: false,
       };

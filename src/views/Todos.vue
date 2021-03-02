@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-4">
+  <div class="container">
     <h1 class="text-center p-2">Todo List</h1>
     <div v-if="loading">
       <h3 class="text-center mt-4">Loading...</h3>
