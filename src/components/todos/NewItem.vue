@@ -18,11 +18,12 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import store from "@/store";
-import { MutationType } from "@/store/mutations";
+import { useStore } from 'vuex'
+import { ActionTypes } from "@/store/modules/todos/actions";
 
 export default defineComponent({
   setup() {
+    const store = useStore()
     const title = ref("");
     const createTask = () => {
       if (!title.value) return;
@@ -30,7 +31,7 @@ export default defineComponent({
         title: title.value,
         completed: false,
       };
-      store.commit(MutationType.CreateItem, item);
+      store.dispatch(ActionTypes.AddItem, item)
       title.value = "";
     };
     return {

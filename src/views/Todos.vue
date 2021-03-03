@@ -18,13 +18,14 @@
 import { computed, defineComponent, onMounted } from "vue";
 import TodoList from "@/components/todos/TodoList.vue";
 import NewItem from "@/components/todos/NewItem.vue";
-import store from "@/store";
-import { ActionTypes } from "@/store/actions";
+import { useStore } from 'vuex'
+import { ActionTypes } from "@/store/modules/todos/actions";
 
 export default defineComponent({
   name: "Todos",
   components: { TodoList, NewItem },
   setup() {
+    const store = useStore()
     const loading = computed(() => store.state.loading);
     onMounted(() => {
       store.dispatch(ActionTypes.GetTodoItems);

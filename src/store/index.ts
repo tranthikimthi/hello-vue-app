@@ -1,12 +1,12 @@
-import { createStore } from 'vuex'
-import { State, state } from './state'
-import { mutations } from './mutations'
-import { actions } from './actions'
-import { getters } from './getters'
+import { createLogger, createStore } from 'vuex'
+import todos from './modules/todos/index'
 
-export default createStore<State>({
-  state,
-  mutations,
-  actions,
-  getters
+const debug = process.env.NODE_ENV !== 'production'
+
+export default createStore({
+  modules: {
+    todos,
+  },
+  strict: debug,
+  plugins: debug ? [createLogger()] : []
 })

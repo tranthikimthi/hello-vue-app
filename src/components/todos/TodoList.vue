@@ -4,13 +4,14 @@
 
 <script lang="ts">
 import { computed, defineComponent } from "vue";
-import store from "@/store";
+import { useStore } from 'vuex'
 import TodoItem from "./TodoItem.vue";
 
 export default defineComponent({
   components: { TodoItem },
   setup() {
-    const items = computed(() => store.state.items);
+    const store = useStore()
+    const items = computed(() => store.state.todos.items);
     return { items };
   },
 });

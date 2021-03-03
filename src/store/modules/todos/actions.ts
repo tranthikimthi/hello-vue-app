@@ -17,7 +17,7 @@ type ActionAugments = Omit<ActionContext<State, State>, 'commit'> & {
     ): ReturnType<Mutations[K]>
 }
 
-export type Actions = {
+type Actions = {
     [ActionTypes.GetTodoItems](Context: ActionAugments): void,
     [ActionTypes.AddItem](Context: ActionAugments, item: TodoItem): void,
     [ActionTypes.DeleteItem](Context: ActionAugments, id: number): void,

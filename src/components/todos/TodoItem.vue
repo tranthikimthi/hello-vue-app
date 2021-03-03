@@ -22,8 +22,9 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import store from "@/store";
-import { MutationType } from "@/store/mutations";
+import { useStore } from "vuex";
+import { MutationType } from "@/store/modules/todos/mutations";
+import { ActionTypes } from "@/store/modules/todos/actions";
 
 export default defineComponent({
   props: {
@@ -32,6 +33,7 @@ export default defineComponent({
     completed: { type: Boolean, required: true },
   },
   setup(props) {
+    const store = useStore();
     const toggleCompletion = () => {
       store.commit(MutationType.CompleteItem, {
         id: props.id,
@@ -39,7 +41,7 @@ export default defineComponent({
       });
     };
     const deleteItem = (id: number) => {
-      store.commit(MutationType.DeleteItem, id);
+      store.dispatch(ActionTypes.DeleteItem, id);
     };
     return { toggleCompletion, deleteItem };
   },
