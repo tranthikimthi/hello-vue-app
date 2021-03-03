@@ -2,26 +2,27 @@
   <div id="nav" class="d-flex" style="justify-content: space-between">
     <div>
       <router-link to="/">Home</router-link> |
-      <router-link to="/todos">Todos</router-link> |
+      <template v-if="user?.loggedIn">
+        <router-link to="/todos">Todos</router-link> |
+      </template>
       <router-link to="/about">About</router-link>
     </div>
     <div>
       <template v-if="user?.loggedIn">
-        <div class="nav-item">{{ user.data.displayName }}</div> |
+        <div class="nav-item">{{ user.data.displayName }}</div>
+        |
         <router-link @click.prevent="signOut">Login</router-link>
       </template>
       <template v-else>
         <router-link to="/login">Login</router-link> |
         <router-link to="/register">Register</router-link>
       </template>
-      <!-- <router-link to="/login">Login</router-link> |
-      <router-link to="/register">Register</router-link> -->
     </div>
   </div>
 </template>
 
 <script>
-import firebase from 'firebase';
+import firebase from "firebase";
 import { computed, defineComponent } from "vue";
 import { useStore } from "vuex";
 
