@@ -1,14 +1,14 @@
 <template>
-  <AboutComponent />
+  <NotFoundComponent />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import AboutComponent from "@/components/about/Index.vue";
+import NotFoundComponent from "@/components/not-found/Index.vue";
 
 export default defineComponent({
   components: {
-    AboutComponent,
+    NotFoundComponent,
   },
 });
 </script>

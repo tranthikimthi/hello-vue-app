@@ -28,7 +28,7 @@ export default defineComponent({
     const store = useStore()
     const loading = computed(() => store.state.loading);
     onMounted(() => {
-      store.dispatch(ActionTypes.GetTodoItems);
+      store.dispatch(ActionTypes.GET_ITEMS);
     });
     const completedCount = computed(() => store.getters.completedCount);
     const totalCount = computed(() => store.getters.totalCount);

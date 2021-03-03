@@ -5,9 +5,9 @@ import axios from "axios";
 import { TodoItem } from "./state";
 
 export enum ActionTypes {
-    GetTodoItems = 'GET_ITEMS',
-    AddItem = 'ADD_ITEM',
-    DeleteItem = 'DELETE_ITEM',
+    GET_ITEMS = 'GET_ITEMS',
+    ADD_ITEM = 'ADD_ITEM',
+    DELETE_ITEM = 'DELETE_ITEM',
 }
 
 type ActionAugments = Omit<ActionContext<State, State>, 'commit'> & {
@@ -18,37 +18,37 @@ type ActionAugments = Omit<ActionContext<State, State>, 'commit'> & {
 }
 
 type Actions = {
-    [ActionTypes.GetTodoItems](Context: ActionAugments): void,
-    [ActionTypes.AddItem](Context: ActionAugments, item: TodoItem): void,
-    [ActionTypes.DeleteItem](Context: ActionAugments, id: number): void,
+    [ActionTypes.GET_ITEMS](Context: ActionAugments): void,
+    [ActionTypes.ADD_ITEM](Context: ActionAugments, item: TodoItem): void,
+    [ActionTypes.DELETE_ITEM](Context: ActionAugments, id: number): void,
 }
 
 export const actions: ActionTree<State, State> & Actions = {
-    async [ActionTypes.GetTodoItems]({ commit }) {
-        commit(MutationType.SetLoading, true);
+    async [ActionTypes.GET_ITEMS]({ commit }) {
+        commit(MutationType.SET_LOADING, true);
         const getAllTodos = async () => {
             try {
                 const res = await axios.get("https://jsonplaceholder.typicode.com/todos?_limit=10");
-                commit(MutationType.SetItems, res.data)
+                commit(MutationType.SET_ITEMS, res.data)
             } catch (error) {
                 console.log(error);
             }
         };
         await getAllTodos();
-        await commit(MutationType.SetLoading, false)
+        await commit(MutationType.SET_LOADING, false)
     },
-    async [ActionTypes.AddItem]({ commit }, item) {
+    async [ActionTypes.ADD_ITEM]({ commit }, item) {
         try {
             const res = await axios.post("https://jsonplaceholder.typicode.com/todos", item);
-            commit(MutationType.CreateItem, res.data);
+            commit(MutationType.CREATE_ITEM, res.data);
         } catch (error) {
             console.log(error);
         }
     },
-    async [ActionTypes.DeleteItem]({ commit }, id) {
+    async [ActionTypes.DELETE_ITEM]({ commit }, id) {
         try {
             await axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`);
-            commit(MutationType.DeleteItem, id);
+            commit(MutationType.DELETE_ITEM, id);
         } catch (error) {
             console.log(error);
         }

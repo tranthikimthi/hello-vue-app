@@ -31,7 +31,7 @@ export default defineComponent({
         title: title.value,
         completed: false,
       };
-      store.dispatch(ActionTypes.AddItem, item)
+      store.dispatch(ActionTypes.ADD_ITEM, item)
       title.value = "";
     };
     return {

@@ -1,14 +1,14 @@
 <template>
-  <AboutComponent />
+  <RegisterComponent />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import AboutComponent from "@/components/about/Index.vue";
+import RegisterComponent from "@/components/register/Index.vue";
 
 export default defineComponent({
   components: {
-    AboutComponent,
+    RegisterComponent,
   },
 });
 </script>

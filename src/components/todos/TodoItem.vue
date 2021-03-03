@@ -35,13 +35,13 @@ export default defineComponent({
   setup(props) {
     const store = useStore();
     const toggleCompletion = () => {
-      store.commit(MutationType.CompleteItem, {
+      store.commit(MutationType.COMPLETE_ITEM, {
         id: props.id,
         completed: !props.completed,
       });
     };
     const deleteItem = (id: number) => {
-      store.dispatch(ActionTypes.DeleteItem, id);
+      store.dispatch(ActionTypes.DELETE_ITEM, id);
     };
     return { toggleCompletion, deleteItem };
   },
