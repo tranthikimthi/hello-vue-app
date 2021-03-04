@@ -20,14 +20,6 @@ const getters = {
 const actions = {
     [ActionTypes.REGISTER]({ commit }, user) {
         commit(MutationTypes.REGISTER, user);
-        if (user) {
-            commit(MutationTypes.SET_USER, {
-                displayName: user.name,
-                email: user.email
-            });
-        } else {
-            commit(MutationTypes.SET_USER, null);
-        }
     },
     [ActionTypes.FETCH_USER]({ commit }, user) {
         commit(MutationTypes.SET_LOGGED_IN, user !== null);
