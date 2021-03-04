@@ -21,10 +21,9 @@
 </template>
 
 <script lang="ts">
+import { ActionTypes, MutationType } from "@/store/constanst/todos.const";
 import { defineComponent } from "vue";
 import { useStore } from "vuex";
-import { MutationType } from "@/store/modules/todos/mutations";
-import { ActionTypes } from "@/store/modules/todos/actions";
 
 export default defineComponent({
   props: {
@@ -35,13 +34,13 @@ export default defineComponent({
   setup(props) {
     const store = useStore();
     const toggleCompletion = () => {
-      store.commit(MutationType.COMPLETE_ITEM, {
+      store.commit(`todos/${MutationType.COMPLETE_ITEM}`, {
         id: props.id,
         completed: !props.completed,
       });
     };
     const deleteItem = (id: number) => {
-      store.dispatch(ActionTypes.DELETE_ITEM, id);
+      store.dispatch(`todos/${ActionTypes.DELETE_ITEM}`, id);
     };
     return { toggleCompletion, deleteItem };
   },

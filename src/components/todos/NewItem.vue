@@ -2,24 +2,20 @@
   <form class="form-row my-2" @submit.prevent="createTask">
     <div class="d-flex col-md-12">
       <input
-        class="form-control col-md-11"
+        class="form-control"
         v-model="title"
         type="text"
         placeholder="What task do you need to complete?"
       />
-      <div class="col-md-1">
-        <button type="submit" class="btn btn-outline-primary">
-          Add
-        </button>
-      </div>
+      <button type="submit" class="btn btn-outline-primary">Add</button>
     </div>
   </form>
 </template>
 
 <script lang="ts">
+import { ActionTypes } from "@/store/constanst/todos.const";
 import { defineComponent, ref } from "vue";
 import { useStore } from 'vuex'
-import { ActionTypes } from "@/store/modules/todos/actions";
 
 export default defineComponent({
   setup() {
@@ -31,7 +27,7 @@ export default defineComponent({
         title: title.value,
         completed: false,
       };
-      store.dispatch(ActionTypes.ADD_ITEM, item)
+      store.dispatch(`todos/${ActionTypes.ADD_ITEM}`, item)
       title.value = "";
     };
     return {
