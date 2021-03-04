@@ -30,8 +30,8 @@ export default defineComponent({
     onMounted(() => {
       store.dispatch(`todos/${ActionTypes.GET_ITEMS}`);
     });
-    const completedCount = computed(() => store.getters.completedCount);
-    const totalCount = computed(() => store.getters.totalCount);
+    const completedCount = computed(() => store.getters[`todos/completedCount`]);
+    const totalCount = computed(() => store.getters[`todos/totalCount`]);
     return { loading, completedCount, totalCount };
   },
 });

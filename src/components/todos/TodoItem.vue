@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import { ActionTypes, MutationType } from "@/store/constanst/todos.const";
+import { ActionTypes, MutationTypes } from "@/store/constanst/todos.const";
 import { defineComponent } from "vue";
 import { useStore } from "vuex";
 
@@ -34,7 +34,7 @@ export default defineComponent({
   setup(props) {
     const store = useStore();
     const toggleCompletion = () => {
-      store.commit(`todos/${MutationType.COMPLETE_ITEM}`, {
+      store.commit(`todos/${MutationTypes.COMPLETE_ITEM}`, {
         id: props.id,
         completed: !props.completed,
       });

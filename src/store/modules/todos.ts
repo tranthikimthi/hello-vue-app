@@ -1,5 +1,5 @@
 import axios from "axios"
-import { ActionTypes, MutationType } from "@/store/constanst/todos.const"
+import { ActionTypes, MutationTypes } from "@/store/constanst/todos.const"
 
 // initial state
 const state = {
@@ -20,22 +20,22 @@ const getters = {
 // actions
 const actions = {
     async [ActionTypes.GET_ITEMS]({ commit }) {
-        commit(MutationType.SET_LOADING, true);
+        commit(MutationTypes.SET_LOADING, true);
         const getAllTodos = async () => {
             try {
                 const res = await axios.get("https://jsonplaceholder.typicode.com/todos?_limit=10");
-                commit(MutationType.SET_ITEMS, res.data)
+                commit(MutationTypes.SET_ITEMS, res.data)
             } catch (error) {
                 console.log(error);
             }
         };
         await getAllTodos();
-        await commit(MutationType.SET_LOADING, false)
+        await commit(MutationTypes.SET_LOADING, false)
     },
     async [ActionTypes.ADD_ITEM]({ commit }, item) {
         try {
             const res = await axios.post("https://jsonplaceholder.typicode.com/todos", item);
-            commit(MutationType.CREATE_ITEM, res.data);
+            commit(MutationTypes.CREATE_ITEM, res.data);
         } catch (error) {
             console.log(error);
         }
@@ -43,7 +43,7 @@ const actions = {
     async [ActionTypes.DELETE_ITEM]({ commit }, id) {
         try {
             await axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`);
-            commit(MutationType.DELETE_ITEM, id);
+            commit(MutationTypes.DELETE_ITEM, id);
         } catch (error) {
             console.log(error);
         }
@@ -52,22 +52,22 @@ const actions = {
 
 // mutations
 const mutations = {
-    [MutationType.CREATE_ITEM](state, item) {
+    [MutationTypes.CREATE_ITEM](state, item) {
         state.items.unshift(item)
     },
-    [MutationType.SET_ITEMS](state, items) {
+    [MutationTypes.SET_ITEMS](state, items) {
         state.items = items
     },
-    [MutationType.COMPLETE_ITEM](state, newItem) {
+    [MutationTypes.COMPLETE_ITEM](state, newItem) {
         const item = state.items.findIndex(s => s.id === newItem.id);
         if (item === -1) return;
         state.items[item] = { ...state.items[item], ...newItem }
     },
-    [MutationType.DELETE_ITEM](state, id) {
+    [MutationTypes.DELETE_ITEM](state, id) {
         const taskIndex: number = state.items.findIndex(item => item.id == id)
         taskIndex > -1 ? state.items.splice(taskIndex, 1) : new Error('Invalid index');
     },
-    [MutationType.SET_LOADING](state, value) {
+    [MutationTypes.SET_LOADING](state, value) {
         state.loading = value
     }
 }

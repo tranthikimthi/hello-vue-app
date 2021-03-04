@@ -1,4 +1,4 @@
-export enum MutationType {
+export enum MutationTypes {
     CREATE_ITEM = 'CREATE_ITEM',
     SET_ITEMS = "SET_ITEMS",
     COMPLETE_ITEM = "COMPLETE_ITEM",
