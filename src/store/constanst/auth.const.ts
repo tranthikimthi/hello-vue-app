@@ -1,4 +1,5 @@
 export enum MutationTypes {
+    REGISTER = 'REGISTER',
     LOGIN = 'LOGIN',
     SET_LOGGED_IN = 'SET_LOGGED_IN',
     SET_USER = 'SET_USER',
@@ -7,6 +8,7 @@ export enum MutationTypes {
 }
 
 export enum ActionTypes {
+    REGISTER = 'REGISTER',
     FETCH_USER = 'FETCH_USER',
     LOGIN = 'LOGIN',
     SIGN_OUT = 'SIGN_OUT',

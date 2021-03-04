@@ -32,7 +32,7 @@ import { ActionTypes } from "@/store/constanst/auth.const";
 export default defineComponent({
   setup() {
     const store = useStore();
-    const user = computed(() => store.state.auth.user);
+    const user = computed(() => store.getters[`auth/user`]);
     const signOut = () => {
       store.dispatch(`auth/${ActionTypes.SIGN_OUT}`)
     };
