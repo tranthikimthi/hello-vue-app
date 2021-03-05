@@ -13,8 +13,17 @@
                 >
 
                 <div class="col-md-6 text-left">
-                  <Field name="name" />
-                  <ErrorMessage name="name" />
+                  <Field
+                    v-model="name"
+                    type="text"
+                    name="name"
+                    v-slot="{ field }"
+                  >
+                    <input v-bind="field" class="form-control" />
+                  </Field>
+                  <ErrorMessage name="name" v-slot="{ message }">
+                    <p style="color: red">{{ message }}</p>
+                  </ErrorMessage>
                 </div>
               </div>
 
@@ -24,8 +33,17 @@
                 >
 
                 <div class="col-md-6 text-left">
-                  <Field name="email" />
-                  <ErrorMessage name="email" />
+                  <Field
+                    v-model="email"
+                    type="text"
+                    name="email"
+                    v-slot="{ field }"
+                  >
+                    <input v-bind="field" class="form-control" />
+                  </Field>
+                  <ErrorMessage name="email" v-slot="{ message }">
+                    <p style="color: red">{{ message }}</p>
+                  </ErrorMessage>
                 </div>
               </div>
 
@@ -37,8 +55,21 @@
                 >
 
                 <div class="col-md-6 text-left">
-                  <Field name="password" />
-                  <ErrorMessage name="password" />
+                  <Field
+                    v-model="password"
+                    type="password"
+                    name="password"
+                    v-slot="{ field }"
+                  >
+                    <input
+                      v-bind="field"
+                      type="password"
+                      class="form-control"
+                    />
+                  </Field>
+                  <ErrorMessage name="password" v-slot="{ message }">
+                    <p style="color: red">{{ message }}</p>
+                  </ErrorMessage>
                 </div>
               </div>
 

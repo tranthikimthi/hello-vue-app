@@ -13,8 +13,17 @@
                 >
 
                 <div class="col-md-6 text-left">
-                  <Field name="email" />
-                  <ErrorMessage name="email" />
+                  <Field
+                    v-model="email"
+                    type="text"
+                    name="email"
+                    v-slot="{ field }"
+                  >
+                    <input v-bind="field" class="form-control" />
+                  </Field>
+                  <ErrorMessage name="email" v-slot="{ message }">
+                    <p style="color: red">{{ message }}</p>
+                  </ErrorMessage>
                 </div>
               </div>
 
@@ -26,8 +35,17 @@
                 >
 
                 <div class="col-md-6 text-left">
-                  <Field name="password" type="password" />
-                  <ErrorMessage name="password" />
+                  <Field
+                    v-model="password"
+                    type="password"
+                    name="password"
+                    v-slot="{ field }"
+                  >
+                    <input v-bind="field" type="password" class="form-control" />
+                  </Field>
+                  <ErrorMessage name="password" v-slot="{ message }">
+                    <p style="color: red">{{ message }}</p>
+                  </ErrorMessage>
                 </div>
               </div>
 
@@ -70,8 +88,6 @@ export default defineComponent({
     const error = computed(() => store.state.auth.loginError);
 
     const submit = (values) => {
-      console.log("values:", values);
-
       store.dispatch(`auth/${ActionTypes.LOGIN}`, values);
     };
     return { schema, error, submit };
