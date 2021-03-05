@@ -17,9 +17,13 @@
                     v-model="email"
                     type="text"
                     name="email"
-                    v-slot="{ field }"
+                    v-slot="{ field, errorMessage }"
                   >
-                    <input v-bind="field" class="form-control" />
+                    <input
+                      v-bind="field"
+                      class="form-control"
+                      :class="{ 'is-invalid': errorMessage }"
+                    />
                   </Field>
                   <ErrorMessage name="email" v-slot="{ message }">
                     <p style="color: red">{{ message }}</p>
@@ -39,9 +43,14 @@
                     v-model="password"
                     type="password"
                     name="password"
-                    v-slot="{ field }"
+                    v-slot="{ field, errorMessage }"
                   >
-                    <input v-bind="field" type="password" class="form-control" />
+                    <input
+                      v-bind="field"
+                      type="password"
+                      class="form-control"
+                      :class="{ 'is-invalid': errorMessage }"
+                    />
                   </Field>
                   <ErrorMessage name="password" v-slot="{ message }">
                     <p style="color: red">{{ message }}</p>
