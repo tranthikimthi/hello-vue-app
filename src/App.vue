@@ -1,15 +1,18 @@
 <template>
+  <SwitchLanguageComponent />
   <NavBarComponent />
-  <router-view/>
+  <router-view />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import NavBarComponent from "@/components/navbar/Index.vue";
+import SwitchLanguageComponent from "@/components/switch-language/switch-language.vue";
 
 export default defineComponent({
   components: {
     NavBarComponent,
+    SwitchLanguageComponent,
   },
 });
 </script>

@@ -1,13 +1,13 @@
 <template>
   <div id="nav" class="d-flex" style="justify-content: space-between">
     <div>
-      <router-link to="/">Home</router-link>
+      <router-link to="/">{{ t("navigations.home") }}</router-link>
       <span class="mx-2">|</span>
       <template v-if="user?.loggedIn">
         <router-link to="/todos">Todos</router-link>
         <span class="mx-2">|</span>
       </template>
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">{{ t("navigations.about") }}</router-link>
     </div>
     <div class="d-flex">
       <template v-if="user?.loggedIn">
@@ -28,15 +28,18 @@
 import { useStore } from "vuex";
 import { computed, defineComponent } from "vue";
 import { ActionTypes } from "@/store/constanst/auth.const";
+import { useI18n } from "vue-i18n";
 
 export default defineComponent({
   setup() {
+    const { t } = useI18n({ useScope: 'global' });
     const store = useStore();
     const user = computed(() => store.getters[`auth/user`]);
     const signOut = () => {
       store.dispatch(`auth/${ActionTypes.SIGN_OUT}`)
     };
     return {
+      t,
       user,
       signOut,
     };

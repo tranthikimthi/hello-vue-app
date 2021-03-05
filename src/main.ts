@@ -6,6 +6,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import firebase from "firebase";
 import { ActionTypes } from './store/constanst/auth.const';
+import i18n from '@/locales/i18n'
 
 const firebaseConfig = {
     apiKey: "AIzaSyBX7AT63N6mzZ2D3qM6zU2-NgVee-3Vlto",
@@ -24,4 +25,4 @@ firebase.auth().onAuthStateChanged((user) => {
     store.dispatch(`auth/${ActionTypes.FETCH_USER}`, user);
 });
 
-createApp(App).use(store).use(router).mount('#app')
+createApp(App).use(i18n).use(store).use(router).mount('#app')
