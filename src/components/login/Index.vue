@@ -6,23 +6,15 @@
           <div class="card-header">Login</div>
           <div class="card-body">
             <div v-if="error" class="alert alert-danger">{{ error }}</div>
-            <form action="#" @submit.prevent="submit">
+            <Form @submit="submit" :validation-schema="schema">
               <div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-right"
                   >Email</label
                 >
 
-                <div class="col-md-6">
-                  <input
-                    id="email"
-                    type="email"
-                    class="form-control"
-                    name="email"
-                    value
-                    required
-                    autofocus
-                    v-model="form.email"
-                  />
+                <div class="col-md-6 text-left">
+                  <Field name="email" />
+                  <ErrorMessage name="email" />
                 </div>
               </div>
 
@@ -33,15 +25,9 @@
                   >Password</label
                 >
 
-                <div class="col-md-6">
-                  <input
-                    id="password"
-                    type="password"
-                    class="form-control"
-                    name="password"
-                    required
-                    v-model="form.password"
-                  />
+                <div class="col-md-6 text-left">
+                  <Field name="password" type="password" />
+                  <ErrorMessage name="password" />
                 </div>
               </div>
 
@@ -50,7 +36,7 @@
                   <button type="submit" class="btn btn-primary">Login</button>
                 </div>
               </div>
-            </form>
+            </Form>
           </div>
         </div>
       </div>
@@ -62,22 +48,33 @@
 import { computed, defineComponent } from "vue";
 import { useStore } from "vuex";
 import { ActionTypes } from "@/store/constanst/auth.const";
+import { Field, Form, ErrorMessage } from "vee-validate";
+import { object, string } from "yup";
 
 export default defineComponent({
+  components: {
+    Field,
+    Form,
+    ErrorMessage,
+  },
   setup() {
-    const store = useStore()
-    
-    const form = {
-      email: "",
-      password: "",
-    };
+    const store = useStore();
+
+    const schema = object({
+      email: string().required("Email is required").email("Email is invalid"),
+      password: string()
+        .required("Password is required")
+        .min(6, "Password must be at least 6 characters"),
+    });
 
     const error = computed(() => store.state.auth.loginError);
 
-    const submit = () => {
-      store.dispatch(`auth/${ActionTypes.LOGIN}`, form)
+    const submit = (values) => {
+      console.log("values:", values);
+
+      store.dispatch(`auth/${ActionTypes.LOGIN}`, values);
     };
-    return { form, error, submit };
+    return { schema, error, submit };
   },
 });
 </script>
