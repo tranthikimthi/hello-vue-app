@@ -3,13 +3,15 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
-          <div class="card-header">Login</div>
+          <div class="card-header">{{ t("navigations.login") }}</div>
           <div class="card-body">
             <div v-if="error" class="alert alert-danger">{{ error }}</div>
             <Form @submit="submit" :validation-schema="schema">
               <div class="form-group row">
-                <label for="email" class="col-md-4 col-form-label text-md-right"
-                  >Email</label
+                <label
+                  for="email"
+                  class="col-md-4 col-form-label text-md-right"
+                  >{{ t("labels.email") }}</label
                 >
 
                 <div class="col-md-6 text-left">
@@ -35,7 +37,7 @@
                 <label
                   for="password"
                   class="col-md-4 col-form-label text-md-right"
-                  >Password</label
+                  >{{ t("labels.password") }}</label
                 >
 
                 <div class="col-md-6 text-left">
@@ -60,7 +62,9 @@
 
               <div class="form-group row mb-0">
                 <div class="col-md-8 offset-md-4">
-                  <button type="submit" class="btn btn-primary">Login</button>
+                  <button type="submit" class="btn btn-primary">
+                    {{ t("navigations.login") }}
+                  </button>
                 </div>
               </div>
             </Form>
@@ -77,6 +81,7 @@ import { useStore } from "vuex";
 import { ActionTypes } from "@/store/constanst/auth.const";
 import { Field, Form, ErrorMessage } from "vee-validate";
 import { object, string } from "yup";
+import { useI18n } from "vue-i18n";
 
 export default defineComponent({
   components: {
@@ -86,6 +91,7 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
+    const { t } = useI18n();
 
     const schema = object({
       email: string().required("Email is required").email("Email is invalid"),
@@ -99,7 +105,7 @@ export default defineComponent({
     const submit = (values) => {
       store.dispatch(`auth/${ActionTypes.LOGIN}`, values);
     };
-    return { schema, error, submit };
+    return { t, schema, error, submit };
   },
 });
 </script>

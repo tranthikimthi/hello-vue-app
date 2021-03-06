@@ -18,10 +18,10 @@ const getters = {
 }
 
 const actions = {
-    [ActionTypes.REGISTER]({ commit }, user) {
+    async [ActionTypes.REGISTER]({ commit }, user) {
         commit(MutationTypes.REGISTER, user);
     },
-    [ActionTypes.FETCH_USER]({ commit }, user) {
+    async [ActionTypes.FETCH_USER]({ commit }, user) {
         commit(MutationTypes.SET_LOGGED_IN, user !== null);
         if (user) {
             commit(MutationTypes.SET_USER, {
@@ -32,10 +32,10 @@ const actions = {
             commit(MutationTypes.SET_USER, null);
         }
     },
-    [ActionTypes.LOGIN]({ commit }, user) {
+    async [ActionTypes.LOGIN]({ commit }, user) {
         commit(MutationTypes.LOGIN, user);
     },
-    [ActionTypes.SIGN_OUT]({ commit }) {
+    async [ActionTypes.SIGN_OUT]({ commit }) {
         commit(MutationTypes.SIGN_OUT);
     },
 }

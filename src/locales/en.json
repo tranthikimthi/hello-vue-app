@@ -1,13 +1,20 @@
 {
+  "welcome": "Welcome to Your Vue.js + TypeScript App",
   "pages": {
     "home": "This page is home page",
     "about": "This page is about page"
   },
   "navigations": {
     "home": "Home",
-    "about": "About"
+    "about": "About",
+    "register": "Register",
+    "login": "Login",
+    "sign_out": "Sign out"
   },
   "labels": {
-    "language": "Languages"
+    "language": "Language",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password"
   }
 }

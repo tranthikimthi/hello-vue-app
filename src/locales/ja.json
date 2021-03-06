@@ -1,13 +1,20 @@
 {
+  "welcome": "Vue.js + TypeScriptアプリへようこそ",
   "pages": {
     "home": "このページはホームです。",
     "about": "このページはアバウトページです。"
   },
   "navigations": {
     "home": "ホーム",
-    "about": "アバウト"
+    "about": "アバウト",
+    "register": "登録",
+    "login": "ログイン",
+    "sign_out": "インアウト"
   },
   "labels": {
-    "language": "言語"
+    "language": "言語",
+    "name": "名前",
+    "email": "Eメール",
+    "password": "パスワード"
   }
 }

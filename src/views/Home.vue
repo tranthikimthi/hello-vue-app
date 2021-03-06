@@ -1,17 +1,20 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HomeComponent msg="Welcome to Your Vue.js + TypeScript App" />
-  </div>
+  <HomeComponent :msg="msg" />
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import HomeComponent from "@/components/home/Index.vue"; // @ is an alias to /src
 
 export default defineComponent({
   components: {
     HomeComponent,
+  },
+  setup() {
+    const msg = ref("welcome");
+    return {
+      msg,
+    };
   },
 });
 </script>

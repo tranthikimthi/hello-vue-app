@@ -13,12 +13,14 @@
       <template v-if="user?.loggedIn">
         <div>{{ user?.data?.displayName }}</div>
         <span class="mx-2">|</span>
-        <a @click.prevent="signOut">Sign out</a>
+        <a @click.prevent="signOut">{{ t("navigations.sign_out") }}</a>
       </template>
       <template v-else>
-        <router-link to="/login">Login</router-link>
+        <router-link to="/login">{{ t("navigations.login") }}</router-link>
         <span class="mx-2">|</span>
-        <router-link to="/register">Register</router-link>
+        <router-link to="/register">{{
+          t("navigations.register")
+        }}</router-link>
       </template>
     </div>
   </div>
@@ -32,11 +34,11 @@ import { useI18n } from "vue-i18n";
 
 export default defineComponent({
   setup() {
-    const { t } = useI18n({ useScope: 'global' });
+    const { t } = useI18n();
     const store = useStore();
     const user = computed(() => store.getters[`auth/user`]);
     const signOut = () => {
-      store.dispatch(`auth/${ActionTypes.SIGN_OUT}`)
+      store.dispatch(`auth/${ActionTypes.SIGN_OUT}`);
     };
     return {
       t,
