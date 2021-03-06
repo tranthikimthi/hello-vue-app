@@ -9,15 +9,18 @@
 </template>
 
 <script>
+import { ActionTypes } from "@/store/constanst/i18n.const";
 import { defineComponent } from "vue";
 import { useI18n } from "vue-i18n";
+import { useStore } from "vuex";
 
 export default defineComponent({
   setup() {
     const { t } = useI18n();
-    let { locale } = useI18n();
+    const store = useStore();
+    const { locale } = useI18n();
     const changeLanguage = (lang) => {
-      locale = lang;
+      store.dispatch(ActionTypes.SET_LANG, lang);
     };
     return { t, locale, changeLanguage };
   },
