@@ -85,7 +85,7 @@ const mutations = {
     },
     [MutationTypes.LOGIN_WITH_FACEBOOK]() {
         const provider = new firebase.auth.FacebookAuthProvider();
-        provider.addScope('user_gender, user_link');
+        provider.addScope('user_gender, user_link'); // https://developers.facebook.com/docs/permissions/reference#reference-business_management
         firebase.auth().useDeviceLanguage();
         firebase.auth().signInWithPopup(provider).then(() => {
             router.replace({ name: "Home" })
