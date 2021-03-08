@@ -9,7 +9,7 @@ import { ActionTypes } from './store/constanst/auth.const';
 import i18n from '@/locales/i18n'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBX7AT63N6mzZ2D3qM6zU2-NgVee-3Vlto",
+    apiKey: "AIzaSyCJ8TKAR1RNhUVkXcB9C5H4ULmcKN_uLNo",
     authDomain: "hello-vue-app.firebaseapp.com",
     projectId: "hello-vue-app",
     storageBucket: "hello-vue-app.appspot.com",
