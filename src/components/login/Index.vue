@@ -70,6 +70,15 @@
             </Form>
           </div>
         </div>
+        <div class="mt-2">
+          <button
+            class="btn btn-outline-danger"
+            type="button"
+            @click.prevent="loginWidthGoogle"
+          >
+            Login with Google
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -105,7 +114,11 @@ export default defineComponent({
     const submit = (values) => {
       store.dispatch(`auth/${ActionTypes.LOGIN}`, values);
     };
-    return { t, schema, error, submit };
+
+    const loginWidthGoogle = () => {
+      store.dispatch(`auth/${ActionTypes.LOGIN_WITH_GOOGLE}`);
+    };
+    return { t, schema, error, submit, loginWidthGoogle };
   },
 });
 </script>

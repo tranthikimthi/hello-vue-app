@@ -9,13 +9,12 @@ import { ActionTypes } from './store/constanst/auth.const';
 import i18n from '@/locales/i18n'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCJ8TKAR1RNhUVkXcB9C5H4ULmcKN_uLNo",
-    authDomain: "hello-vue-app.firebaseapp.com",
-    projectId: "hello-vue-app",
-    storageBucket: "hello-vue-app.appspot.com",
-    messagingSenderId: "1053247288496",
-    appId: "1:1053247288496:web:5d2f94269a8a4432e1b775",
-    measurementId: "G-48VK2F0WMK"
+    apiKey: "AIzaSyCZeO5gVVRFJa9lhisxxZ5LPsOfn4IzkEE",
+    authDomain: "hello-vue-app-dfa2d.firebaseapp.com",
+    projectId: "hello-vue-app-dfa2d",
+    storageBucket: "hello-vue-app-dfa2d.appspot.com",
+    messagingSenderId: "689803706010",
+    appId: "1:689803706010:web:78bddf805fe39731f36923"
 };
 
 // Initialize Firebase

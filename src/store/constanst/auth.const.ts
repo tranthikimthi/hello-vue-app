@@ -1,6 +1,7 @@
 export enum MutationTypes {
     REGISTER = 'REGISTER',
     LOGIN = 'LOGIN',
+    LOGIN_WITH_GOOGLE = 'LOGIN_WITH_GOOGLE',
     SET_LOGGED_IN = 'SET_LOGGED_IN',
     SET_USER = 'SET_USER',
     SIGN_OUT = 'SIGN_OUT',
@@ -11,5 +12,6 @@ export enum ActionTypes {
     REGISTER = 'REGISTER',
     FETCH_USER = 'FETCH_USER',
     LOGIN = 'LOGIN',
+    LOGIN_WITH_GOOGLE = 'LOGIN_WITH_GOOGLE',
     SIGN_OUT = 'SIGN_OUT',
 }

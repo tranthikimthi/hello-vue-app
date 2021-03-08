@@ -35,6 +35,9 @@ const actions = {
     async [ActionTypes.LOGIN]({ commit }, user) {
         commit(MutationTypes.LOGIN, user);
     },
+    async [ActionTypes.LOGIN_WITH_GOOGLE]({ commit }) {
+        commit(MutationTypes.LOGIN_WITH_GOOGLE);
+    },
     async [ActionTypes.SIGN_OUT]({ commit }) {
         commit(MutationTypes.SIGN_OUT);
     },
@@ -68,6 +71,14 @@ const mutations = {
             .catch((err) => {
                 state.loginError = err.message;
             });
+    },
+    [MutationTypes.LOGIN_WITH_GOOGLE](state, payload) {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(result => {
+            router.replace({ name: "Home" })
+        }).catch(err => {
+            alert("Oops. " + err.message);
+        })
     },
     [MutationTypes.SET_LOGGED_IN](state, value) {
         state.user.loggedIn = value;
