@@ -38,6 +38,9 @@ const actions = {
     async [ActionTypes.LOGIN_WITH_GOOGLE]({ commit }) {
         commit(MutationTypes.LOGIN_WITH_GOOGLE);
     },
+    async [ActionTypes.LOGIN_WITH_FACEBOOK]({ commit }) {
+        commit(MutationTypes.LOGIN_WITH_FACEBOOK);
+    },
     async [ActionTypes.SIGN_OUT]({ commit }) {
         commit(MutationTypes.SIGN_OUT);
     },
@@ -72,9 +75,19 @@ const mutations = {
                 state.loginError = err.message;
             });
     },
-    [MutationTypes.LOGIN_WITH_GOOGLE](state, payload) {
+    [MutationTypes.LOGIN_WITH_GOOGLE]() {
         const provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(result => {
+        firebase.auth().signInWithPopup(provider).then(() => {
+            router.replace({ name: "Home" })
+        }).catch(err => {
+            alert("Oops. " + err.message);
+        })
+    },
+    [MutationTypes.LOGIN_WITH_FACEBOOK]() {
+        const provider = new firebase.auth.FacebookAuthProvider();
+        provider.addScope('user_gender, user_link');
+        firebase.auth().useDeviceLanguage();
+        firebase.auth().signInWithPopup(provider).then(() => {
             router.replace({ name: "Home" })
         }).catch(err => {
             alert("Oops. " + err.message);

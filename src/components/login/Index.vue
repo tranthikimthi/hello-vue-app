@@ -61,7 +61,7 @@
               </div>
 
               <div class="form-group row mb-0">
-                <div class="col-md-8 offset-md-4">
+                <div class="col-md-6 offset-md-6">
                   <button type="submit" class="btn btn-primary">
                     {{ t("navigations.login") }}
                   </button>
@@ -70,7 +70,14 @@
             </Form>
           </div>
         </div>
-        <div class="mt-2">
+        <div class="mt-2 d-flex justify-content-center">
+          <button
+            class="btn btn-outline-primary mr-2"
+            type="button"
+            @click.prevent="loginWidthFacebook"
+          >
+            Login with Facebook
+          </button>
           <button
             class="btn btn-outline-danger"
             type="button"
@@ -118,7 +125,11 @@ export default defineComponent({
     const loginWidthGoogle = () => {
       store.dispatch(`auth/${ActionTypes.LOGIN_WITH_GOOGLE}`);
     };
-    return { t, schema, error, submit, loginWidthGoogle };
+
+    const loginWidthFacebook = () => {
+      store.dispatch(`auth/${ActionTypes.LOGIN_WITH_FACEBOOK}`);
+    };
+    return { t, schema, error, submit, loginWidthGoogle, loginWidthFacebook };
   },
 });
 </script>
