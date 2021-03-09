@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import AuthGuard from './auth-guard'
+import store from '@/store'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -11,7 +11,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/todos',
     name: 'Todos',
     component: () => import('../views/Todos.vue'),
-    beforeEnter: AuthGuard
+    meta: { requiresAuth: true }
   },
   {
     path: '/about',
@@ -38,5 +38,14 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  const isAuthenticated = store.getters[`auth/user`].loggedIn;
+  if (requiresAuth && !isAuthenticated) {
+    next('/login');
+  }
+  next();
+});
 
 export default router
