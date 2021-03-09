@@ -16,5 +16,18 @@
     "name": "名前",
     "email": "Eメール",
     "password": "パスワード"
+  },
+  "validations": {
+    "name": {
+      "required": "名前が必要です"
+    },
+    "email": {
+      "required": "メールが必要です",
+      "invalid": "メールが無効です"
+    },
+    "password": {
+      "required": "パスワードが必要です",
+      "min": "パスワードは{min}文字以上である必要があります"
+    }
   }
 }

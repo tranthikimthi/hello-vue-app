@@ -110,10 +110,12 @@ export default defineComponent({
     const { t } = useI18n();
 
     const schema = object({
-      email: string().required("Email is required").email("Email is invalid"),
+      email: string()
+        .required(t("validations.email.required"))
+        .email(t("validations.email.invalid")),
       password: string()
-        .required("Password is required")
-        .min(6, "Password must be at least 6 characters"),
+        .required(t("validations.password.required"))
+        .min(6, t("validations.password.min", { min: 6 })),
     });
 
     const error = computed(() => store.state.auth.loginError);
